@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8">
+        <title> CSS布局等相关演示</title>       
+        
+        <style>            
+           fieldset{
+               width:900px;
+               height:450px;
+               display:flex;
+               flex-direction: column;
+           }
+            
+            #radio_element_explain_container{                             
+                display:flex; 
+
+            }
+
+            #radio_container{
+                display:flex;                
+                flex-direction: column;
+                flex:1;
+                align-items:flex-end;
+                justify-content:center;
+                background-color: aliceblue;
+                padding:10px;
+            }
+            .radio{
+                height:40px;
+            }
+
+            #element_container{
+                border:solid 2px ;
+                width:400px;
+                height:230px;
+                background-color: antiquewhite; 
+                margin-left:10px; 
+                margin-right:10px;             
+                padding:5px;
+            }
+
+            #flex_button_container{
+                display:none; /*设为none是为了只在必要时才显示它*/
+                grid-template-columns:repeat(4,1fr);
+                grid-gap:0.6em;
+            }
+
+            #grid_button_container{
+                display:none;/*设为none是为了只在必要时才显示它*/
+                grid-template-columns:repeat(4,1fr);
+                grid-gap:0.6em;
+            }
+
+            .control{ font-size:1em;}
+
+            p{ 
+                border:solid 1px red;  
+                border-radius:5px; 
+                background-color: aqua; padding:1px; margin:1px;
+                }
+            #explanation{
+                background-color:aliceblue;
+                padding:10px;
+                flex:1.5;
+                font-size:1em;
+            }
+
+        </style>
+
+        
+
+    </head>
+    <body>
+        
+       
+
+        <fieldset>
+            <legend style='color:red;'>CSS布局等相关演示 （孤狼追峰 QQ:468128073）</legend>
+            <h4 style="text-align:center;"> 说明：点击下左的单选按钮，体验CSS的不同布局，对于Flex布局和Grid布局，会出现相应布局的相关按钮。</h4>
+
+             <!-- 单选框，要布局的元素和说明三者的容器-->
+               <div id="radio_element_explain_container">             
+                <!-- 单选框的容器-->
+                <div id="radio_container"> 
+                    <div class='radio'> 
+                                <label for='a1'>inline布局</label>
+                                <input type="radio" id='a1' name="show_category" 
+                                onclick="inline()"/>
+                    </div>
+                    
+                    <div class='radio'> 
+                        <label for='a2'>block布局</label>
+                        <input type="radio" id='a2' name="show_category" onclick="block()" checked="checked" />
+                    </div>
+                    
+                   <div class='radio'>
+                        <label for='a3'>inline-block布局</label>
+                        <input type="radio" id='a3' name="show_category"  onclick="inline_block()"/> 
+                   </div>
+    
+                   <div class='radio'>
+                        <label for='a4'>Flex布局</label>
+                        <input type="radio" id='a4' name="show_category"  onclick="flex()"/> 
+                   </div>
+    
+                   <div class='radio'>
+                        <label for='a5'>Grid布局</label>
+                        <input type="radio" id='a5' name="show_category" onclick="grid()"/> 
+                   </div>
+    
+                </div>
+    
+                <!-- 要布局元素的容器-->
+                <div id="element_container">
+                        <p >元素 1</p >
+                        <p >元素 2 </p>
+                        <p >元素 3 </p>
+                        <p >元素 4</p>
+                        <p >元素 5</p>
+                    </div>
+    
+                <div id='explanation' style="text-indent:2em;line-height:1.5em; margin-left:5px;">所有元素为块元素，其特点是每个元素都在单独的行显示，且在整体的上和下各加一空行，元素的宽度为容器的宽度，高度与其内容相同。 </div>
+               
+                
+            </div>
+    
+            <!--Flex布局和Grid布局的相关选项按钮容器-->
+            <div id="button_container" style="padding-top:5px; background-color:darkcyan; flex:1; margin-top:2px;">
+                
+                <!--Flex布局单选框和按钮-->
+                <div id="flex_button_container" >
+                    
+                    <div style="background-color: rgb(215, 237, 255); 
+                        color:red;font-weight:bold;margin:2px;">
+                        <lable for='row'> flex-direction:row</lable>
+                        <input type="radio" id='row' name='single' checked="checked" onclick="flex_direction_row()"/>
+                    </div>
+
+                    <div style="background-color: rgb(215, 237, 255);
+                        color:red;font-weight:bold;">
+                        <lable for='column'> flex-direction:column</lable>
+                        <input type="radio" id='column' name='single' onclick="flex_direction_column()"/>
+                    </div>
+
+                    <input type="button" class='control' value="align-items:flex-start" onclick="flex_alignItems_flex_start()"/>
+
+                    <input type="button" class='control' value="align-items:center" onclick="flex_alignItems_center()"/>
+
+                    <input type="button" class='control' value="align-items:flex-end" onclick="flex_alignItems_flex_end()"/>
+
+                    <input type="button" class='control' value="justify-content:flex-start" onclick="flex_jsutifyContent_flexStart()"/>
+
+                    <input type="button" class='control' value="justify-content:center" onclick="flex_jsutifyContent_center()"/>
+
+                    <input type="button" class='control' value="justify-content:flex-end" onclick="flex_jsutifyContent_flexEnd()"/>
+
+                    <input type="button" class='control' value="justify-content:spaceBetween" onclick="flex_jsutifyContent_spaceBetween()"/>
+
+                    <input type="button" class='control' value="justify-content:spaceAround" onclick="flex_jsutifyContent_spaceAround()"/>
+
+                    <input type="button" class='control' value="justify-content:spaceEvenly" onclick="flex_jsutifyContent_spaceEvenly()"/>
+                </div>
+
+                <!--Grid布局按钮-->
+                <div id='grid_button_container' >
+                    <div style="background-color:rgb(209, 252, 248);">
+                        <label>grid-template-columns:</label>
+                        <input type="number" value='1' id='grid_column_num' 
+                               onclick="changeGridColumnNum()"/>
+                    </div>
+                    <div style="background-color:rgb(209, 252, 248);">
+                        <label>grid-gap:</label>
+                        <input type="number" value='10' id='grid_column_gap' 
+                               onclick="changeGridColumnGap()"/>
+                    </div>
+                    
+                </div>
+                
+    
+            </div>
+
+
+        </fieldset>
+        
+        
+        
+        
+       
+        <script type="text/javascript">
+           
+            var _element=document.getElementsByTagName('p');
+            var _element_container=document.getElementById('element_container');
+            var _flex_button_container=document.getElementById('flex_button_container');
+            var _grid_button_container=document.getElementById('grid_button_container');
+            var _inst=document.getElementById('explanation');
+            
+ 
+           //确保每次刷新页面"block布局“单选框和“flex布局”里的行方向都处于选定状态
+            window.onload=function(){
+                document.getElementById('a2').checked='checked';
+                document.getElementById("row").checked='checked';
+                document.getElementById('grid_column_num').value=1;
+                document.getElementById('grid_column_gap').value=10;
+            }
+
+            //下为各布局按钮项代码
+            function inline(){                
+                _element_container.style.display='initial';
+                _flex_button_container.style.display="none";
+               for (var i=0;i<_element.length;i++){
+                    _element[i].style.display='inline';
+                    
+                }
+                _inst.innerHTML="<b>内联布局</b><br/>所有元素变为内联元素，其特点是元素与元素同行显示，空间不够才另起一行，元素的宽度与高度均与其内容相同。";
+                              
+            }
+            function block(){
+                _element_container.style.display='initial';
+                _flex_button_container.style.display="none";
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.display='block';
+                }
+                _inst.innerHTML="<b>块布局</b><br/>所有元素变为块元素，其特点是每个元素都在单独的行显示，且在整体的上和下各加一空行，元素的宽度为容器的宽度，高度与其内容相同。";
+                              
+            }
+ 
+           function inline_block(){
+                _element_container.style.display='initial';
+                _flex_button_container.style.display="none";
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.display='inline-block';
+                }
+                _inst.innerHTML="<b>内联块布局</b><br/>所有元素变为内联块元素，它兼具内联与块的双重特点：元素都在同一行显示，空间不够才另起一行，元素的宽度和高度与其内容相同（内联的特点）；相互之间有空隙（块的特点）。";
+                              
+            }
+ 
+            function flex(){
+                _element_container.style.display='flex';
+               _flex_button_container.style.display="grid";
+               _grid_button_container.style.display='none';
+               _element_container.style.flexDirection="row";
+               _element_container.style.alignItems="stretch";
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex布局</b><br/>Flex布局是一维布局，即布局方向要么‘行’要么‘列’。默认为行，交叉向默认为‘伸展’";
+                           
+            }
+
+             function grid(){
+                _flex_button_container.style.display="none";
+                _grid_button_container.style.display='flex';
+                _grid_button_container.style.justifyContent="space-around";
+                _grid_button_container.style.alignItems='center';
+                _grid_button_container.style.height="100%";
+                _element_container.style.display='grid';
+                _element_container.style.gridGap="10px";                             
+                _inst.innerHTML="<b>Grid布局</b><br/>Grid布局是二维布局，即布局可以‘行’和‘列’的方式进行。默认为1列，此处行列间距均设为了10像素。点击下边的grid-template-columns来修改列数；点击grid-cap来修改行/列间距。"
+                           
+            }
+
+            function changeGridColumnNum(){
+                var colNum=document.getElementById('grid_column_num').value;
+                _element_container.style.gridTemplateColumns="repeat(" +colNum+ ",1fr)"; //此步技巧重要
+               
+            }
+
+            function changeGridColumnGap(){
+                var colGapNum=document.getElementById('grid_column_gap').value;
+                _element_container.style.gridGap=colGapNum+"px"; //此步技巧重要
+               
+            }
+
+
+            function flex_direction_row(){
+                _element_container.style.display='flex';
+                _element_container.style.flexDirection="row";
+                _element_container.style.alignItems='stretch';
+               _flex_button_container.style.display="grid";
+               
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex行布局</b><br/>交叉向默认为‘伸展’";
+                           
+            }
+
+            function flex_direction_column(){
+                _element_container.style.display='flex';
+                _element_container.style.flexDirection="column";
+                _element_container.style.alignItems='stretch';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex列布局</b><br/>交叉向默认为‘伸展’";                           
+            }
+
+            function flex_alignItems_flex_start(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.alignItems='flex-start';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex布局交叉向头对齐</b><br/>取消交叉向默认的‘伸展’，对齐改为‘头’";
+                           
+            }
+
+            function flex_alignItems_center(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.alignItems='center';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex布局交叉向居中对齐</b><br/>取消交叉向默认的‘伸展’，对齐改为‘中心’";
+                           
+            }
+
+            function flex_alignItems_flex_end(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.alignItems='flex-end';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex=1;                                      
+                }                                        
+                _inst.innerHTML="<b>Flex布局交叉向尾对齐</b><br/>取消交叉向默认的‘伸展’，对齐改为‘尾’";
+                           
+            }
+
+            function flex_jsutifyContent_flexStart(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='flex-start';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向头对齐</b><br/>主轴方向对齐为‘flex头’";
+            }
+
+            function flex_jsutifyContent_center(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='center';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向中心对齐</b><br/>主轴对齐为‘中心’";
+            }
+
+            function flex_jsutifyContent_flexEnd(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='flex-end';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向尾对齐</b><br/>主轴对齐为‘Flex尾’";
+            }
+
+            function flex_jsutifyContent_spaceBetween(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='space-between';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向对齐</b><br/>主轴向对齐为‘space-between’，类似space-around，不同在于不在两端留有空间。";
+            }
+
+            function flex_jsutifyContent_spaceAround(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='space-around';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向对齐</b><br/>主轴对齐为‘space-around’，此项将弹性项沿主轴平均分配位置，两端保留一点儿空间。";
+            }
+
+            function flex_jsutifyContent_spaceEvenly(){
+                _element_container.style.display='flex';
+                
+                _element_container.style.justifyContent='space-evenly';
+               _flex_button_container.style.display="grid";
+              
+                for (var i=0;i<_element.length;i++){
+                    _element[i].style.flex='unset'; //将原来的1变为unset                                     
+                }                                        
+                _inst.innerHTML="<b>Flex布局主向对齐</b><br/>主轴对齐为‘space-evenly’，类似space-around，不同在于在两端留有的空间与各项之间的空间相同。";
+            }
+
+
+
+
+
+
+
+
+
+ 
+         </script>
+    </body>
+</html>
